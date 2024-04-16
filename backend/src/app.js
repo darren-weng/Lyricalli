@@ -1,4 +1,4 @@
-const textyl = require("./src/api/textyl");
+const textyl = require("./api/textyl");
 
 const express = require("express");
 const { get } = require("http");
