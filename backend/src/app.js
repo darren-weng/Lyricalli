@@ -14,7 +14,7 @@ app.use(express.static("./frontend/src"));
 app.set("view engine", "ejs");
 
 let indexDir = path.join(__dirname, "..", "..", "frontend", "src", "index");
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.render(indexDir);
 });
 
@@ -27,5 +27,3 @@ app.post("/", urlencodedParser, (req, res) => {
 app.listen(port, () => {
   console.log("App listening on port " + port);
 });
-
-// was just testing the get lyrics here
