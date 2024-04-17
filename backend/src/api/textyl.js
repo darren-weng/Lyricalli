@@ -1,11 +1,11 @@
 const badWords = {
-  "sh*t": "shit",
-  "f**k": "fuck",
-  "b**th": "bitch",
-  "a*s": "ass",
-  "d**k": "dick",
-  "ni**a": "nigga",
-  "d**e": "dope",
+  "shxt": "shit",
+  "fxxk": "fuck",
+  "bxxth": "bitch",
+  "axs": "ass",
+  "dxxk": "dick",
+  "nixxa": "nigga",
+  "dxxe": "dope",
 };
 
 // fetches the lyrics from the API
@@ -25,7 +25,17 @@ async function getLyrics(song) {
 
 function removeFilter(text) {
   for (const key in badWords) {
-    text = text.replaceAll(key, badWords[key]);
+    text = text.replaceAll("*", "x");
+    const regex = new RegExp(key, "gi");
+    
+    text = text.replaceAll(regex, (match) => {
+      if (match[0] == match[0].toUpperCase()) {
+        return badWords[key][0].toUpperCase() + badWords[key].slice(1);
+      }
+      else {
+        badWords[key];
+      }
+    });
   }
   text = text.replace(/\\r/g, "");
   return JSON.parse(text);
