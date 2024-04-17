@@ -24,17 +24,15 @@ async function getLyrics(song) {
 }
 
 function removeFilter(text) {
-  for (const key in badWords) {
-    text = text.replaceAll("*", "x");
-    const regex = new RegExp(key, "gi");
+  text = text.replaceAll("*", "x");
 
+  for (const key in badWords) {
+    const regex = new RegExp(key, "gi");
     text = text.replaceAll(regex, (match) => {
       if (match[0] == match[0].toUpperCase()) {
         return badWords[key][0].toUpperCase() + badWords[key].slice(1);
       }
-      else {
-        return badWords[key];
-      }
+      return
     });
   }
   text = text.replace(/\\r/g, "");
