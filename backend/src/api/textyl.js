@@ -1,12 +1,16 @@
 const badWords = {
   "shxt": "shit",
+  "sxxt": "shit",
   "fxxk": "fuck",
   "bxxch": "bitch",
   "bxxth": "bitch",
+  "bxxxh": "bitch",
+  "xxxxx": "bitch",
   "axs": "ass",
   "axx": "ass",
   "dxxk": "dick",
   "nixxa": "nigga",
+  "nxxxa": "nigga",
   "dxxe": "dope",
   "pxxsy": "pussy",
 };
