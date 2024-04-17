@@ -19,7 +19,7 @@ app.listen(port, () => {
 });
 
 // was just testing the get lyrics here
-textyl.getLyrics("chekc wes").then((result) => {
+textyl.getLyrics("sheck wes").then((result) => {
   console.log(result);
 });
 

@@ -1,11 +1,14 @@
 const badWords = {
-  shxt: "shit",
-  fxxk: "fuck",
-  bxxth: "bitch",
-  axs: "ass",
-  dxxk: "dick",
-  nixxa: "nigga",
-  dxxe: "dope",
+  "shxt": "shit",
+  "fxxk": "fuck",
+  "bxxch": "bitch",
+  "bxxth": "bitch",
+  "axs": "ass",
+  "axx": "ass",
+  "dxxk": "dick",
+  "nixxa": "nigga",
+  "dxxe": "dope",
+  "pxxsy": "pussy",
 };
 
 // fetches the lyrics from the API
