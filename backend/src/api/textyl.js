@@ -31,6 +31,4 @@ function removeFilter(text) {
   return JSON.parse(text);
 }
 
-module.exports = { getLyrics }
-
-
+module.exports = { getLyrics };

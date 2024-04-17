@@ -6,9 +6,11 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+app.use(express.static("./frontend/src"));
+
 app.get("/", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "..", "..", "frontend", "src", "index.html")
+  res.render(
+    path.join(__dirname, "..", "..", "frontend", "src", "index.html"),
   );
 });
 
@@ -17,7 +19,7 @@ app.listen(port, () => {
 });
 
 // was just testing the get lyrics here
-textyl.getLyrics("sheck wes").then((result) => {
+textyl.getLyrics("chekc wes").then((result) => {
   console.log(result);
 });
 
