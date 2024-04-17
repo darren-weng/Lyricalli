@@ -1,7 +1,7 @@
 const badWords = {
-  "s(hxt|xxt)": "shit",
   "fxxk": "fuck",
-  "b(itch|xxth|xxxh|xxxxx)": "bitch",
+  "b(xxth|xxxh)|xxxxx": "bitch",
+  "s(hxt|xxt)|xxxx": "shit",
   "a(xs|xx)": "ass",
   "dxxk": "dick",
   "n(ixxa|xxxa)": "nigga",
