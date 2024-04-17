@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
-    <div id="jitTripping">
-      JAJAJAJAj
+    <form id="search-form" action="" method="POST">
+      <div>
+        <label for="songName">Song:</label>
+        <input
+          type="text"
+          id="songName"
+          name="songName"
+          placeholder="Song Name"
+        />
+      </div>
+      <input type="submit" value="Submit" />
+    </form>
+
+    <div>
+      <!--! Prettier formatter does not properly format ejs code -->
+      <% if (typeof lyrics != "undefined") { %> <% lyrics.forEach(res=>{ %>
+      <div><%= res.lyrics %></div>
+      <% }); %> <% } %>
     </div>
   </body>
 
