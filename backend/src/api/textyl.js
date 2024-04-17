@@ -32,7 +32,7 @@ function removeFilter(text) {
       if (match[0] == match[0].toUpperCase()) {
         return badWords[key][0].toUpperCase() + badWords[key].slice(1);
       }
-      return
+      return badWords[key];
     });
   }
   text = text.replace(/\\r/g, "");
