@@ -27,13 +27,13 @@ function removeFilter(text) {
   for (const key in badWords) {
     text = text.replaceAll("*", "x");
     const regex = new RegExp(key, "gi");
-    
+
     text = text.replaceAll(regex, (match) => {
       if (match[0] == match[0].toUpperCase()) {
         return badWords[key][0].toUpperCase() + badWords[key].slice(1);
       }
       else {
-        badWords[key];
+        return badWords[key];
       }
     });
   }

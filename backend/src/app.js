@@ -1,7 +1,7 @@
 const textyl = require("./api/textyl");
 
 const express = require("express");
-const { get } = require("http");
+const get = require("http");
 const path = require("path");
 const app = express();
 const port = 3000;
