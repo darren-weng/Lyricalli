@@ -13,15 +13,14 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static("./frontend/src"));
 app.set("view engine", "ejs");
 
+let indexDir = path.join(__dirname, "..", "..", "frontend", "src", "index");
 app.get("/", (req, res) => {
-  res.render(path.join(__dirname, "..", "..", "frontend", "src", "index"));
+  res.render(indexDir);
 });
 
 app.post("/", urlencodedParser, (req, res) => {
   textyl.getLyrics(req.body.songName).then((result) => {
-    res.render(path.join(__dirname, "..", "..", "frontend", "src", "index"), {
-      lyrics: result,
-    });
+    res.render(indexDir, { lyrics: result });
   });
 });
 
