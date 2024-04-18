@@ -2,5 +2,9 @@
 ../backend/.DS_Store
 .DS_Store
 
+# run files
+run.bat
+run.sh
+
 # sensitive data
 .env
