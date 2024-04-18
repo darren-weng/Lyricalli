@@ -1,3 +1,6 @@
 # automated mac files
 ../backend/.DS_Store
 .DS_Store
+
+# sensitive data
+.env
