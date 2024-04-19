@@ -30,7 +30,7 @@ async function getTopArtists(country) {
   let topArtists = await response.text();
   topArtists = JSON.parse(topArtists);
 
-  if (topArtists.topartists != undefined) return topartists.topartists.artist;
+  if (topArtists.topartists != undefined) return topArtists.topartists.artist;
   return topArtists.artists.artist;
 }
 
@@ -65,5 +65,29 @@ async function getTopSongs(country) {
   return topSongs.tracks.track;
 }
 
+// * fetches a correctly spelled artist name
+async function searchArtist(artist) {
+  let url = "";
+
+  if (artist) {
+    url =
+      "https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" +
+      artist +
+      "&api_key=" +
+      apiKey +
+      "&format=json";
+  } else return "artist required";
+
+  const response = await fetch(url, {
+    method: "GET",
+  });
+
+  let artistResults = await response.text();
+  artistResults = JSON.parse(artistResults);
+
+  return artistResults.results.artistmatches.artist[0].name;
+}
+
 // placed for testing purposes
-getTopArtists().then((res) => console.log(res));
+// getTopArtists("united states").then((res) => console.log(res));
+searchArtist("tyalor sift").then((res) => console.log(res));
