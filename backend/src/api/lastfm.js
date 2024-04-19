@@ -25,8 +25,12 @@ async function getTopArtists(country) {
     method: "GET",
   });
 
-  const topArtists = await response.text();
-  return filterTopArtists(topArtists);
+  // converts text to json
+  let topArtists = await response.text();
+  topArtists = JSON.parse(topArtists);
+
+  if (topArtists.topartists != undefined) return topartists.topartists.artist;
+  return topArtists.artists.artist;
 }
 
 async function getTopSongs(country) {
@@ -51,44 +55,13 @@ async function getTopSongs(country) {
     method: "GET",
   });
 
-  const topSongs = await response.text();
-  return filterTopSongs(topSongs);
+  // converts text to json
+  let topSongs = await response.text();
+  topSongs = JSON.parse(topSongs);
+
+  if (topSongs.toptracks != undefined) return topSongs.toptracks.track;
+  return topSongs.tracks.track;
 }
 
-// converts JSON information of artists to array
-function filterTopArtists(text) {
-  let artists = [];
-  text = JSON.parse(text);
-
-  if (text.artists != undefined) {
-    for (let i = 0; i < text.artists.artist.length; ++i) {
-      artists.push(text.artists.artist[i].name);
-    }
-  } else {
-    for (let i = 0; i < text.topartists.artist.length; ++i) {
-      artists.push(text.topartists.artist[i].name);
-    }
-  }
-
-  return artists;
-}
-
-function filterTopSongs(text) {
-  let songs = [];
-  text = JSON.parse(text);
-
-  if (text.tracks != undefined) {
-    for (let i = 0; i < text.tracks.track.length; ++i) {
-      songs.push(text.tracks.track[i].name);
-    }
-  } else {
-    for (let i = 0; i < text.toptracks.track.length; ++i) {
-      songs.push(text.toptracks.track[i].name);
-    }
-  }
-
-  return songs;
-}
-
-// testing here
-getTopSongs().then((res) => console.log(res));
+// placed for testing purposes
+getTopArtists().then((res) => console.log(res));
