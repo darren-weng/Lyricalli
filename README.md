@@ -1,2 +1,2 @@
-# lyrics-game
+# Lyrically Game
 Work in Progress
