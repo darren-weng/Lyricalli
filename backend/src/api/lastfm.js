@@ -2,7 +2,8 @@ require("dotenv").config();
 const apiKey = process.env.LASTFM_API_KEY;
 
 //! maybe find a way to merge getTopArtists and getTopSongs to prevent repetition
-// fetches the top 100 artists/songs
+
+// * fetches top 100 artists
 async function getTopArtists(country) {
   let url = "";
 
@@ -33,6 +34,7 @@ async function getTopArtists(country) {
   return topArtists.artists.artist;
 }
 
+// * fetches top 100 songs
 async function getTopSongs(country) {
   let url = "";
 
