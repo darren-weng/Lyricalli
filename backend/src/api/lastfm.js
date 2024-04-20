@@ -88,6 +88,11 @@ async function searchArtist(artist) {
   return artistResults.results.artistmatches.artist[0].name;
 }
 
+// * fetches top tracks of artists
+async function getArtistTracks() {
+  // CONTINUE LATER
+}
+
 // placed for testing purposes
 // getTopArtists("united states").then((res) => console.log(res));
 searchArtist("tyalor sift").then((res) => console.log(res));

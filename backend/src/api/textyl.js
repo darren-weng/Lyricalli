@@ -1,3 +1,5 @@
+const unidecode = require("unidecode");
+
 const badWords = {
   fxxk: "fuck",
   "b(xxth|xxxh)|xxxxx": "bitch",
@@ -25,7 +27,7 @@ async function getLyrics(song) {
 }
 
 function removeFilter(text) {
-  text = text.replaceAll("*", "x");
+  text = unidecode(text.replaceAll("*", "x"));
 
   for (const key in badWords) {
     const regex = new RegExp(key, "gi");
