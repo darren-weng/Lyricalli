@@ -27,7 +27,7 @@ async function getLyrics(song) {
 }
 
 function removeFilter(text) {
-  text = unidecode(text.replaceAll("*", "x"));
+  text = text.replaceAll("*", "x");
 
   for (const key in badWords) {
     const regex = new RegExp(key, "gi");
@@ -39,7 +39,14 @@ function removeFilter(text) {
     });
   }
   text = text.replace(/\\r/g, "");
-  return JSON.parse(text);
+  
+  let parsedJson = JSON.parse(text);
+
+  for (let i = 0; i < parsedJson.length; ++i) {
+    parsedJson[i].lyrics = unidecode(parsedJson[i].lyrics).replaceAll('"', "");
+  }
+
+  return parsedJson;
 }
 
 module.exports = { getLyrics };
