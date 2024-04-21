@@ -1,4 +1,7 @@
 const unidecode = require("unidecode");
+const Kuroshiro = require("kuroshiro");
+const KuromojiAnalyzer = require("kuroshiro-analyzer-kuromoji");
+const kuroshiro = new Kuroshiro();
 
 const badWords = {
   fxxk: "fuck",
@@ -39,12 +42,35 @@ function removeFilter(text) {
     });
   }
   text = text.replace(/\\r/g, "");
-  
   let parsedJson = JSON.parse(text);
 
-  for (let i = 0; i < parsedJson.length; ++i) {
-    parsedJson[i].lyrics = unidecode(parsedJson[i].lyrics).replaceAll('"', "");
+  if (Kuroshiro.Util.hasJapanese(text)) {
+    return kuroshiro.init(new KuromojiAnalyzer()).then(() => {
+      return romanizeJapanese(parsedJson).then((res) => {
+        return res;
+      });
+    });
+  } else {
+    for (let i = 0; i < parsedJson.length; ++i) {
+      parsedJson[i].lyrics = unidecode(parsedJson[i].lyrics).replaceAll(
+        '"',
+        ""
+      );
+    }
+    return parsedJson;
   }
+}
+
+async function romanizeJapanese(parsedJson) {
+  const promises = parsedJson.map((item) =>
+    kuroshiro.convert(item.lyrics, { mode: "spaced", to: "romaji" })
+  );
+
+  const results = await Promise.all(promises);
+
+  results.forEach((res, index) => {
+    parsedJson[index].lyrics = unidecode(res);
+  });
 
   return parsedJson;
 }
