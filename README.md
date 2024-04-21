@@ -1,2 +1,2 @@
-# Lyrically Game
-Work in Progress
+# 🎶 Lyrically
+A website made by musicophiles, for musicophiles
