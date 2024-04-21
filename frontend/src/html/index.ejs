@@ -1,6 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../style/style.css" />
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,13 +22,11 @@
 
     <div>
       <!--! Prettier formatter does not properly format ejs code -->
-      <% if (typeof lyrics != "undefined") { %>
-      <% lyrics.forEach(res=>{ %>
+      <% if (typeof lyrics != "undefined") { %> <% lyrics.forEach(res=>{ %>
       <div><%= res.lyrics %></div>
-      <% }); %>
-      <% } %>
+      <% }); %> <% } %>
     </div>
   </body>
 
-  <script src="script.js"></script>
+  <script src="../script/script.js"></script>
 </html>

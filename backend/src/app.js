@@ -13,7 +13,15 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static("./frontend/src"));
 app.set("view engine", "ejs");
 
-let indexDir = path.join(__dirname, "..", "..", "frontend", "src", "index");
+let indexDir = path.join(
+  __dirname,
+  "..",
+  "..",
+  "frontend",
+  "src",
+  "html",
+  "index"
+);
 app.get("/", (_, res) => {
   res.render(indexDir);
 });
