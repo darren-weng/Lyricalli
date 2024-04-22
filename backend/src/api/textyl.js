@@ -14,7 +14,7 @@ const badWords = {
   pxxsy: "pussy",
 };
 
-// fetches the lyrics from the API
+// * fetches the lyrics from the API
 async function getLyrics(song) {
   const url = "https://api.textyl.co/api/lyrics?q=" + encodeURIComponent(song);
 
@@ -29,6 +29,7 @@ async function getLyrics(song) {
   return removeFilter(lyrics);
 }
 
+// * uncensors bad words and romanizes
 function removeFilter(text) {
   text = text.replaceAll("*", "x");
 
@@ -61,6 +62,7 @@ function removeFilter(text) {
   }
 }
 
+// * transliterates japanese
 async function romanizeJapanese(parsedJson) {
   const promises = parsedJson.map((item) =>
     kuroshiro.convert(item.lyrics, { mode: "spaced", to: "romaji" })
