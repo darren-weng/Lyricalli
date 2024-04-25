@@ -93,6 +93,8 @@ async function getArtistTracks() {
   // CONTINUE LATER
 }
 
+module.exports = { getTopArtists, getTopSongs, getArtistTracks, searchArtist }
+
 // placed for testing purposes
 // getTopArtists("united states").then((res) => console.log(res));
 searchArtist("tyalor sift").then((res) => console.log(res));

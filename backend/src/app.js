@@ -7,13 +7,14 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+const htmlDir = path.join(__dirname, "..", "..", "frontend", "src", "html");
+
 // necessary to pull data from POST
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static("./frontend/src"));
 app.set("view engine", "ejs");
 
-let htmlDir = path.join(__dirname, "..", "..", "frontend", "src", "html");
 app.get("/", (_, res) => {
   res.render(path.join(htmlDir, "index"));
 });
@@ -26,6 +27,10 @@ app.post("/", urlencodedParser, (req, res) => {
 
 app.get("/search", (_, res) => {
   res.render(path.join(htmlDir, "search-page"));
+});
+
+app.get("/artist", (_, res) => {
+  res.render(path.join(htmlDir, "artist"));
 });
 
 app.listen(port, () => {

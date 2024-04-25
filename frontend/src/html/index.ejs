@@ -9,7 +9,7 @@
   <body>
     <form id="search-form" action="" method="POST">
       <div>
-        <label for="songName">Song:</label>
+        <label for="songName">Song:</label>  
         <input
           type="text"
           id="songName"
@@ -22,9 +22,10 @@
 
     <div>
       <!--! Prettier formatter does not properly format ejs code -->
-      <% if (typeof lyrics != "undefined") { %> <% lyrics.forEach(res=>{ %>
-      <div><%= res.lyrics %></div>
-      <% }); %> <% } %>
+      <% if (typeof lyrics != "undefined") { %> 
+        <% lyrics.forEach(res=>{ %>
+        <div><%= res.lyrics %></div>
+        <% }); %> <% } %>
     </div>
   </body>
 

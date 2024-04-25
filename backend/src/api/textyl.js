@@ -1,3 +1,4 @@
+const undici = require('undici');
 const unidecode = require("unidecode");
 const Kuroshiro = require("kuroshiro");
 const KuromojiAnalyzer = require("kuroshiro-analyzer-kuromoji");
@@ -18,10 +19,15 @@ const badWords = {
 async function getLyrics(song) {
   const url = "https://api.textyl.co/api/lyrics?q=" + encodeURIComponent(song);
 
-  const response = await fetch(url, {
+  const response = await undici.fetch(url, {
     method: "GET",
     mode: "cors",
     credentials: "same-origin",
+    dispatcher: new undici.Agent({
+      connect: {
+        rejectUnauthorized: false
+      }
+    })
   });
 
   let lyrics = await response.text();
@@ -33,6 +39,7 @@ async function getLyrics(song) {
 function removeFilter(text) {
   text = text.replaceAll("*", "x");
 
+  // * uncensor words
   for (const key in badWords) {
     const regex = new RegExp(key, "gi");
     text = text.replaceAll(regex, (match) => {
@@ -45,6 +52,7 @@ function removeFilter(text) {
   text = text.replace(/\\r/g, "");
   let parsedJson = JSON.parse(text);
 
+  // * romanization starts here
   if (Kuroshiro.Util.hasJapanese(text)) {
     return kuroshiro.init(new KuromojiAnalyzer()).then(() => {
       return romanizeJapanese(parsedJson).then((res) => {
@@ -76,5 +84,7 @@ async function romanizeJapanese(parsedJson) {
 
   return parsedJson;
 }
+
+// getLyrics("idol").then((res) => console.log(res));
 
 module.exports = { getLyrics };
