@@ -1,6 +1,3 @@
-const textyl = require("./api/textyl");
-const lastfm = require("./api/lastfm");
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const get = require("http");
@@ -34,15 +31,9 @@ app.get("/search", (_, res) => {
 app.get("/artist", (_, res) => {
   lastfm.searchArtist("taylorswift").then((result) => {
     console.log(result);
-    res.render(path.join(htmlDir, "artist"), { songs: result})
-  })
-})
-
-app.get("/artist", (_, res) => {
-  res.render(path.join(htmlDir, "artist"));
+    res.render(path.join(htmlDir, "artist"), { songs: result });
+  });
 });
-
-
 
 app.listen(port, () => {
   console.log("App listening on port " + port);

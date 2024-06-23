@@ -7,7 +7,7 @@ const fetchOptions = {
 
 const rootUrl = "https://lrclib.net/api/";
 
-// str, str, str, int
+// PARAMS: str, str, str, int
 async function getLyrics(track, artist, album, duration) {
   const url =
     rootUrl +
@@ -26,4 +26,9 @@ async function getLyrics(track, artist, album, duration) {
   console.log(lyrics.syncedLyrics);
 }
 
-getLyrics("Never Gonna Give You Up", "Rick Astley", "Whenever You Need Somebody", 214)
+getLyrics(
+  "Never Gonna Give You Up",
+  "Rick Astley",
+  "Whenever You Need Somebody",
+  214
+);

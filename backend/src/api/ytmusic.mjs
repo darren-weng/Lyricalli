@@ -21,7 +21,7 @@ async function searchAlbum(album) {
 }
 
 // requires id passed from searchAlbum
-//* this function does not work currently. gives a typeerror
+//! gives a typeerror
 async function listAlbumSongs(albumId) {
   const albumSongs = await listMusicsFromAlbum(albumId);
   console.log(albumSongs);
@@ -35,4 +35,4 @@ searchAlbum("the tortured poets department").then((res) => {
 });
 */
 
-searchMusic("never gonna give you up").then((res) => console.log(res))
+searchMusic("never gonna give you up").then((res) => console.log(res));
