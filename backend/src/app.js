@@ -1,3 +1,5 @@
+const lrclib = require("./api/lrclib");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const get = require("http");
@@ -19,7 +21,7 @@ app.get("/", (_, res) => {
 });
 
 app.post("/", urlencodedParser, (req, res) => {
-  textyl.getLyrics(req.body.songName).then((result) => {
+  lrclib.getLyrics(req.body.songName).then((result) => {
     res.render(path.join(htmlDir, "index"), { lyrics: result });
   });
 });

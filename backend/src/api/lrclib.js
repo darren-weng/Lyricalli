@@ -7,10 +7,13 @@ const fetchOptions = {
 
 const rootUrl = "https://lrclib.net/api/";
 
-// logs synced and unsynced lyrics 
+module.exports = { getLyrics };
+
+// logs synced and unsynced lyrics
 async function getLyrics(track) {
   const ytmusic = await import("./ytmusic.mjs");
   const musicData = await ytmusic.searchMusic(track);
+
   /** INDEXES OF MUSIC DATA
    * 0: title
    * 1: artist
@@ -34,9 +37,11 @@ async function getLyrics(track) {
 
   let lyrics = await response.json();
 
-  // commenting out plainLyrics for now
   // console.log(lyrics.plainLyrics);
-  console.log(lyrics.syncedLyrics);
+  // console.log(lyrics.syncedLyrics);
+
+  //* returns plain lyrics for testing purposes (will be changed in future)
+  return lyrics.plainLyrics;
 }
 
-getLyrics("cupid korean version");
+// getLyrics("");

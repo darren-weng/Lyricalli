@@ -9,7 +9,7 @@
   <body>
     <form id="search-form" action="" method="POST">
       <div>
-        <label for="songName">Song:</label>  
+        <label for="songName">Song:</label>
         <input
           type="text"
           id="songName"
@@ -22,13 +22,22 @@
 
     <div>
       <!--! Prettier formatter does not properly format ejs code -->
-      <% if (typeof lyrics != "undefined") { %> 
-        <% lyrics.forEach(res=>{ %>
-        <div><%= res.lyrics %></div>
-        <% }); %> <% } %>
+      <% if (typeof lyrics != "undefined") { %> <% const arr =
+      lyrics.split("\n"); %> <% console.log(arr[0]); %> <% arr.forEach(res=>{ %>
+      <div><%= res %></div>
+      <% }); %> <% } %>
     </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/lYBUbBu4W08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/lYBUbBu4W08"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
   </body>
 
   <script src="../script/script.js"></script>
