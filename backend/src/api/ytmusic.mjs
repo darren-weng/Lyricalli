@@ -12,7 +12,16 @@ async function searchArtist(artist) {
 
 export async function searchMusic(title) {
   const music = await searchMusics(title);
-  return music[0];
+  // 
+  let musicData = [
+    music[0].title,
+    music[0].artists[0].name,
+    music[0].album,
+    music[0].duration.totalSeconds,
+    music[0].youtubeId
+  ];
+
+  return musicData;
 }
 
 async function searchAlbum(album) {
@@ -28,11 +37,15 @@ async function listAlbumSongs(albumId) {
   return albumSongs;
 }
 
-//* search album works then gives an error at listAlbumSongs
+//!search album works then gives an error at listAlbumSongs
 /**
 searchAlbum("the tortured poets department").then((res) => {
   listAlbumSongs(res);
 });
 */
 
-searchMusic("never gonna give you up").then((res) => console.log(res))
+/**
+searchMusic("rick astley never gonna give you up").then((res) =>
+  console.log(res)
+);
+*/
