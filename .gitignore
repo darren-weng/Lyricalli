@@ -8,3 +8,7 @@ run.sh
 
 # sensitive data
 .env
+
+# archived files
+backend/src/api/textyl.js
+backend/src/api/lastfm.js

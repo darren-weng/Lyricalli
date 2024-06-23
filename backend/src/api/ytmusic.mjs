@@ -35,3 +35,4 @@ searchAlbum("the tortured poets department").then((res) => {
 });
 */
 
+searchMusic("never gonna give you up").then((res) => console.log(res))
