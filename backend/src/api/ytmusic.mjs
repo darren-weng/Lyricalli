@@ -30,7 +30,7 @@ async function searchAlbum(album) {
 }
 
 // requires id passed from searchAlbum
-//* this function does not work currently. gives a typeerror
+//! gives a typeerror
 async function listAlbumSongs(albumId) {
   const albumSongs = await listMusicsFromAlbum(albumId);
   console.log(albumSongs);
