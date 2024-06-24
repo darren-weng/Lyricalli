@@ -7,9 +7,7 @@ const fetchOptions = {
 
 const rootUrl = "https://lrclib.net/api/";
 
-module.exports = { getLyrics };
-
-// logs synced and unsynced lyrics
+// returns synced and unsynced lyrics + youtube link
 async function getLyrics(track) {
   const ytmusic = await import("./ytmusic.mjs");
   const musicData = await ytmusic.searchMusic(track);
@@ -36,12 +34,10 @@ async function getLyrics(track) {
   const response = await fetch(url, fetchOptions);
 
   let lyrics = await response.json();
-
-  // console.log(lyrics.plainLyrics);
-  // console.log(lyrics.syncedLyrics);
+  lyrics.youtubeUrl = "https://www.youtube.com/embed/" + musicData[4]
 
   //* returns plain lyrics for testing purposes (will be changed in future)
-  return lyrics.plainLyrics;
+  return lyrics;
 }
 
-// getLyrics("");
+module.exports = { getLyrics };

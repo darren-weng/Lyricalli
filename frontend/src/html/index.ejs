@@ -22,16 +22,17 @@
 
     <div>
       <!--! Prettier formatter does not properly format ejs code -->
-      <% if (typeof lyrics != "undefined") { %> <% const arr =
+      <% if (typeof lyrics != "undefined" && lyrics != null) { %> <% const arr =
       lyrics.split("\n"); %> <% console.log(arr[0]); %> <% arr.forEach(res=>{ %>
       <div><%= res %></div>
-      <% }); %> <% } %>
+      <% }); %>
+      <% } %>
     </div>
 
     <iframe
       width="560"
       height="315"
-      src="https://www.youtube.com/embed/lYBUbBu4W08"
+      src="<%= typeof ytUrl == "undefined" ? "": ytUrl%>"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
