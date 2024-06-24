@@ -7,7 +7,7 @@
     <title>Lyrically | A mix of typing and music</title>
   </head>
   <body>
-    <form id="search-form" action="" method="POST">
+    <form id="search-form" action="play" method="POST">
       <div>
         <label for="songName">Song:</label>
         <input
@@ -19,27 +19,6 @@
       </div>
       <input type="submit" value="Submit" />
     </form>
-
-    <div>
-      <!--! Prettier formatter does not properly format ejs code -->
-      <% if (typeof lyrics != "undefined" && lyrics != null) { %> <% const arr =
-      lyrics.split("\n"); %> <% console.log(arr[0]); %> <% arr.forEach(res=>{ %>
-      <div><%= res %></div>
-      <% }); %>
-      <% } %>
-    </div>
-
-    <iframe
-      width="560"
-      height="315"
-      src="<%= typeof ytUrl == "undefined" ? "": ytUrl%>"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen
-    ></iframe>
-  </body>
 
   <script src="../script/script.js"></script>
 </html>

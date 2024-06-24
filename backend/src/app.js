@@ -20,9 +20,9 @@ app.get("/", (_, res) => {
   res.render(path.join(htmlDir, "index"));
 });
 
-app.post("/", urlencodedParser, (req, res) => {
+app.post("/play", urlencodedParser, (req, res) => {
   lrclib.getLyrics(req.body.songName).then((result) => {
-    res.render(path.join(htmlDir, "index"), {
+    res.render(path.join(htmlDir, "play"), {
       lyrics: result.plainLyrics,
       ytUrl: result.youtubeUrl,
     });

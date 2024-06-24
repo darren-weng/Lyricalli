@@ -34,7 +34,8 @@ async function getLyrics(track) {
   const response = await fetch(url, fetchOptions);
 
   let lyrics = await response.json();
-  lyrics.youtubeUrl = "https://www.youtube.com/embed/" + musicData[4]
+  lyrics.youtubeUrl =
+    "https://www.youtube.com/embed/" + musicData[4] + "?enablejsapi=1";
 
   //* returns plain lyrics for testing purposes (will be changed in future)
   return lyrics;
