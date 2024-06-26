@@ -25,6 +25,7 @@ app.post("/play", urlencodedParser, (req, res) => {
     res.render(path.join(htmlDir, "play"), {
       lyrics: result.plainLyrics,
       ytUrl: result.youtubeUrl,
+      timestampsArr: result.timestamps,
     });
   });
 });

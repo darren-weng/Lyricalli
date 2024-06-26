@@ -32,13 +32,30 @@ async function getLyrics(track) {
     musicData[3];
 
   const response = await fetch(url, fetchOptions);
+  let songData = await response.json();
 
-  let lyrics = await response.json();
-  lyrics.youtubeUrl =
+  songData.youtubeUrl =
     "https://www.youtube.com/embed/" + musicData[4] + "?enablejsapi=1";
 
-  //* returns plain lyrics for testing purposes (will be changed in future)
-  return lyrics;
+  // pulls timestamps from synced lyrics string
+  let syncedLyricsArr = songData.syncedLyrics.split("\n");
+  let timestampArr = [];
+
+  for (let i = 0; i < syncedLyricsArr.length; ++i) {
+    // removes all timestamps with no lyrics
+    const line = syncedLyricsArr[i].substring(10);
+    if (line == " ") continue;
+
+    // gets timestamp in seconds
+    const min = parseFloat(syncedLyricsArr[i].substring(1, 3));
+    const sec = parseFloat(syncedLyricsArr[i].substring(4, 9));
+    const timestamp = min * 60 + sec;
+
+    timestampArr.push(timestamp);
+  }
+  songData.timestamps = timestampArr;
+
+  return songData;
 }
 
 module.exports = { getLyrics };

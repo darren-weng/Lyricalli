@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="../style/style.css" />
+  <link rel="stylesheet" href="/style/style.css" />
+  <link rel="stylesheet" href="/style/play.css" />
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,11 +21,13 @@
       <input type="submit" value="Submit" />
     </form>
 
-    <div>
+    <div id="lyrics-container">
       <!--! Prettier formatter does not properly format ejs code -->
       <% if (typeof lyrics != "undefined" && lyrics != null) { %> <% const arr =
       lyrics.split("\n"); %> <% console.log(arr[0]); %> <% arr.forEach(res=>{ %>
-      <div><%= res %></div>
+      <% if (res != "") { %>
+      <div class="hidden"><%= res %></div>
+      <% } %>
       <% }); %>
       <% } %>
     </div>
@@ -42,5 +45,6 @@
     ></iframe>
   </body>
 
-  <script src="../script/play.js"></script>
+  <script defer>let timestamps = [<%= timestampsArr %>];</script>
+  <script type="text/javascript" src="/script/play.js" defer></script>
 </html>
