@@ -17,7 +17,7 @@ app.use(express.static("./frontend/src"));
 app.set("view engine", "ejs");
 
 app.get("/", (_, res) => {
-  res.render(path.join(htmlDir, "index"));
+  res.render(path.join(htmlDir, "home-page"));
 });
 
 app.post("/play", urlencodedParser, (req, res) => {
