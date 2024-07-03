@@ -1,3 +1,10 @@
+// japanese transliterator
+const Kuroshiro = require("kuroshiro");
+const KuromojiAnalyzer = require("kuroshiro-analyzer-kuromoji");
+const kuroshiro = new Kuroshiro();
+
+const unidecode = require("unidecode");
+
 const fetchOptions = {
   method: "GET",
   headers: {
@@ -6,6 +13,7 @@ const fetchOptions = {
 };
 
 const rootUrl = "https://lrclib.net/api/";
+let kuroshiroInit = false;
 
 // returns synced and unsynced lyrics + youtube link
 async function getLyrics(track) {
@@ -53,9 +61,51 @@ async function getLyrics(track) {
 
     timestampArr.push(timestamp);
   }
+
+  // * ------------------- romanization starts here ---------------------- * //
+
+  // gets rid of spaces and creates an array
+  let lyricsArr = songData.plainLyrics.split("\n").filter((item) => item != "");
+
+  if (Kuroshiro.Util.hasJapanese(songData.plainLyrics)) {
+    if (kuroshiroInit == false) {
+      await kuroshiro.init(new KuromojiAnalyzer());
+      kuroshiroInit = true;
+    }
+    const decodedArr = await transliterateJapanese(lyricsArr).then((res) => {
+      return res;
+    });
+    songData.plainLyrics = decodedArr;
+  } else {
+    let decodedArr = [];
+    for (let i = 0; i < lyricsArr.length; i++) {
+      decodedArr.push(unidecode(lyricsArr[i]));
+    }
+    songData.plainLyrics = decodedArr;
+  }
+
   songData.timestamps = timestampArr;
 
+  console.log(songData.plainLyrics);
   return songData;
 }
+
+async function transliterateJapanese(array) {
+  let transliteratedArr = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let converted = await kuroshiro.convert(array[i], {
+      mode: "spaced",
+      to: "romaji",
+    });
+    converted = unidecode(converted.replace(/\s+/g, " ").trim());
+
+    transliteratedArr.push(converted);
+  }
+
+  return transliteratedArr;
+}
+
+getLyrics("racing into the night")
 
 module.exports = { getLyrics };

@@ -45,6 +45,7 @@ function selectLyricsLine() {
   // sets selected line if none
   if (selectedIndex == -1) {
     selectedLine = lyricsElements[0];
+    console.log(lyricsElements[0]);
     selectedLine.classList.remove("hidden");
     selectedLine.id = "selected";
     selectedIndex = 0;
@@ -70,3 +71,4 @@ function selectLyricsLine() {
     ++selectedIndex;
   }
 }
+
