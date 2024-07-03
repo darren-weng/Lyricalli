@@ -63,8 +63,7 @@ async function getLyrics(track) {
   }
 
   // * ------------------- romanization starts here ---------------------- * //
-
-  // gets rid of spaces and creates an array
+  // gets rid of empty lines and creates an array
   let lyricsArr = songData.plainLyrics.split("\n").filter((item) => item != "");
 
   if (Kuroshiro.Util.hasHiragana(songData.plainLyrics)) {
@@ -79,13 +78,14 @@ async function getLyrics(track) {
   } else {
     let decodedArr = [];
     for (let i = 0; i < lyricsArr.length; i++) {
-      decodedArr.push(unidecode(lyricsArr[i]));
+      decodedArr.push(unidecode(lyricsArr[i].replace(/\s+/g, " ")));
     }
     songData.plainLyrics = decodedArr;
   }
 
   songData.timestamps = timestampArr;
 
+  console.log(songData.plainLyrics);
   return songData;
 }
 
@@ -97,7 +97,14 @@ async function transliterateJapanese(array) {
       mode: "spaced",
       to: "romaji",
     });
-    converted = unidecode(converted.replace(/\s+/g, " ").trim());
+    // removes spaces before and after an apostrophe, removes quotes, removes extra spaces
+    converted = unidecode(
+      converted
+        .replace(/\s*'\s*/g, "'") // Remove spaces before and after an apostrophe
+        .replace(/[\"()]/g, "") // Remove all instances of quotes and parentheses
+        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+        .trim() // Trim leading and trailing spaces
+    );
 
     transliteratedArr.push(converted);
   }
@@ -105,6 +112,6 @@ async function transliterateJapanese(array) {
   return transliteratedArr;
 }
 
-getLyrics("racing into the night")
+getLyrics("supernova new jeans");
 
 module.exports = { getLyrics };
