@@ -23,12 +23,25 @@
 
     <div id="lyrics-container">
       <!--! Prettier formatter does not properly format ejs code -->
-      <% if (typeof lyrics != "undefined" && lyrics != null) { %> <% const arr =
-      lyrics.split("\n"); %> <% console.log(arr[0]); %> <% arr.forEach(res=>{ %>
+
+      <% if (typeof lyrics != "undefined" && lyrics != null) { %> 
+
+      <% const arr =
+      lyrics.split("\n"); %>
+      <% for (let i = 0; i < arr.length; ++i) { 
+        let res = arr[i];
+      %>
       <% if (res != "") { %>
-      <div class="hidden"><%= res %></div>
+          <div id="<%= "lyric" + i %>" class="hidden lyric">
+          <% 
+          for (let e = 0; e < res.length; e++) { %>
+            <span id="<%= "letter" + e %>" class="letter">
+              <%= res[e] %>
+            </span>
+            <% } %>
+        </div>
       <% } %>
-      <% }); %>
+      <% } %>
       <% } %>
     </div>
 
@@ -39,12 +52,13 @@
       src="<%= typeof ytUrl == "undefined" ? "": ytUrl%>"
       title="YouTube video player"
       frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen
     ></iframe>
   </body>
+  
+  <input type="text" id="charInput">
 
-  <script defer>let timestamps = [<%= timestampsArr %>];</script>
+  <script defer> let timestamps = [<%= timestampsArr %>];</script>
   <script type="text/javascript" src="/script/play.js" defer></script>
+  <script type="text/javascript" src="/script/checker.js" defer></script>
 </html>

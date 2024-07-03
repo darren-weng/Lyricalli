@@ -10,7 +10,27 @@
   color: black;
 }
 
-/* .hidden {
+.hidden {
   display: none;
   opacity: 0;
-} */
+}
+
+.lyric {
+  flex-wrap: wrap;
+}
+
+.letter {
+  display: inline-block; 
+  margin: 0;
+  padding: 0;
+  letter-spacing: -1em; 
+  font-size: 16px; 
+}
+
+.correct {
+  color: green;
+}
+
+.wrong {
+  color: red;
+}
