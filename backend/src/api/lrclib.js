@@ -67,7 +67,7 @@ async function getLyrics(track) {
   // gets rid of spaces and creates an array
   let lyricsArr = songData.plainLyrics.split("\n").filter((item) => item != "");
 
-  if (Kuroshiro.Util.hasJapanese(songData.plainLyrics)) {
+  if (Kuroshiro.Util.hasHiragana(songData.plainLyrics)) {
     if (kuroshiroInit == false) {
       await kuroshiro.init(new KuromojiAnalyzer());
       kuroshiroInit = true;
@@ -86,7 +86,6 @@ async function getLyrics(track) {
 
   songData.timestamps = timestampArr;
 
-  console.log(songData.plainLyrics);
   return songData;
 }
 
