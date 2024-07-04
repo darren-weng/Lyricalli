@@ -12,3 +12,4 @@ run.sh
 # archived files
 backend/src/api/textyl.js
 backend/src/api/lastfm.js
+node_modules
