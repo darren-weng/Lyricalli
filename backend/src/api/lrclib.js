@@ -101,9 +101,9 @@ async function transliterateJapanese(array) {
     converted = unidecode(
       converted
         .replace(/\s*'\s*/g, "'") // Remove spaces before and after an apostrophe
-        .replace(/[\"()]/g, "") // Remove all instances of quotes and parentheses
+        .replace(/[\"()]/g, "") // Remove all instances of quotes
         .replace(/\s+/g, " ") // Replace multiple spaces with a single space
-        .trim() // Trim leading and trailing spaces
+        .trim()
     );
 
     transliteratedArr.push(converted);
