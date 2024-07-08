@@ -5,51 +5,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lyrically | The Speed of Sound</title>
+    <title>Lyrically | Home</title>
   </head>
   <body>
     <section class="ad-section">
       <div class="ad-popup">hi I'm an ad</div>
     </section>
 
-    <section>
-      <div>
+    <section class="content-section">
+      <div id="title-container">
         <div id="title">Lyrically</div>
         <div id="subtitle">the Speed of Sound</div>
+
+        <form id="search-form" action="play" method="POST">
+          <div>
+            <input
+              type="text"
+              id="search-box"
+              name="songName"
+              placeholder="Search Song..."
+            />
+          </div>
+          <input id="search-btn" type="submit" value="" />
+        </form>
       </div>
 
-      <form id="search-form" action="play" method="POST">
+      <div id="info-container">
         <div>
-          <input
-            type="text"
-            id="songName"
-            name="songName"
-            placeholder="Song (Ex: Cupid Twin Version by Fifty Fifty)"
-          />
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
-
-      <div>
-        <div>
-          <div class="header">What is Lyrically?</div>
-          <div>
+          <div class="question-header">What is Lyrically?</div>
+          <div class="question-content">
             Lyrically is a passion project created by musicophiles, for musicophiles. 
             It offers a multitude of typing tests that follow the flow of songs of your choosing.
           </div>
         </div>
 
         <div>
-          <div class="header">Is Lyrically free to play?</div>
-          <div>Lyrically is 100% free to play to anyone. We don't plan to have any paywalls in the future as well.</div>
+          <div class="question-header">Is Lyrically free to play?</div>
+          <div class="question-content">Lyrically is 100% free to play to anyone. We don't plan to have any paywalls in the future as well.</div>
         </div>
 
         <div>
-          <div class="header">How does Lyrically make money?</div>
-          <div>
+          <div class="question-header">How can I support Lyrically?</div>
+          <div class="question-content">
             Lyrically makes money by the use of ads so if you want our website to stay up, please don't use an adblocker. 
             Of course, to prevent ads from interrupting your experience, we don't include ads when you play. 
             We also accept doantions at [DONATION LINK].
+          </div>
+        </div>
+
+        <div>
+          <div class="question-header">Does Lyrically have socials?</div>
+          <div class="question-content">
+            Lyrically is active on TikTok, Instagram, and Youtube. If you need to contact us for inquiries, you can email
+            us via lyricallygame@gmail.com, where we will try to reply within 14 business days.
           </div>
         </div>
       </div>
