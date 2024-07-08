@@ -85,7 +85,6 @@ async function getLyrics(track) {
 
   songData.timestamps = timestampArr;
 
-  console.log(songData.plainLyrics);
   return songData;
 }
 
