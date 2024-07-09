@@ -48,7 +48,6 @@ function checkLyricsChanges(mutationsList) {
       if (lyricIndexLength - letterIndex > 0) comboReset();
       mistakes += lyricIndexLength - letterIndex;
 
-      console.log(mistakes);
       console.log(comboArray);
 
       // last index of the lyric
@@ -125,8 +124,7 @@ function inputHandler(event) {
 
     letterIndex++;
     pointsCalc();
-    
-    console.log(highestLetterIndex);
+
     console.log(Math.round(totalPoints));
   } else {
     // if it's wrong
@@ -134,7 +132,6 @@ function inputHandler(event) {
     letterIndex++;
     mistakes++;
 
-    console.log(mistakes);
     comboReset();
   }
 }
@@ -145,21 +142,21 @@ function comboReset() {
   }
 }
 
+//! FIX THIS. CAN BACKSPACE AND RETYPE
 function pointsCalc() {
-  console.log(letterIndex);
-  console.log(lyricIndexLength);
-
   // prevents point farming on the last letter
-  if (letterIndex == lyricIndexLength + 1) highestLetterIndex = letterIndex;
-  if (letterIndex > highestLetterIndex) {
-    console.log("letter index: " + letterIndex);
-    console.log("length: " + lyricIndexLength);
+  console.log("letter index: " + letterIndex);
+  console.log("length: " + highestLetterIndex);
 
+  if (letterIndex > highestLetterIndex) {
     comboArray[comboArray.length - 1]++;
     totalPoints +=
       ((totalCharacters - mistakes) / totalCharacters) *
       (300 * (comboArray[comboArray.length - 1] / 88));
   }
+
+  if (letterIndex == lyricIndexLength + 1) highestLetterIndex = letterIndex;
+
 }
 
 function handleBackspace(type) {
