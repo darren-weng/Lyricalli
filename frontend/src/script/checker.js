@@ -9,8 +9,8 @@ let currentLyric;
 let currentLyricIndex = 0;
 
 // input handler variables
-let letterIndex = 0;
-let spaceArray = [];
+let letterIndex = 1;
+let spaceArray = [0];
 let lyricIndexLength = 0;
 let totalCharacters = 0;
 let mistakes = 0;
@@ -49,6 +49,7 @@ function checkLyricsChanges(mutationsList) {
       mistakes += lyricIndexLength - letterIndex;
 
       console.log(mistakes);
+      console.log(comboArray);
 
       // last index of the lyric
       lyricIndexLength = parseInt(
@@ -58,8 +59,8 @@ function checkLyricsChanges(mutationsList) {
       currentLyricIndex++;
 
       // resets the variables
-      letterIndex = 0;
-      spaceArray = [-1];
+      letterIndex = 1;
+      spaceArray = [0];
       highestLetterIndex = 0;
     }
 
@@ -124,7 +125,8 @@ function inputHandler(event) {
 
     letterIndex++;
     pointsCalc();
-
+    
+    console.log(highestLetterIndex);
     console.log(Math.round(totalPoints));
   } else {
     // if it's wrong
@@ -144,9 +146,15 @@ function comboReset() {
 }
 
 function pointsCalc() {
+  console.log(letterIndex);
+  console.log(lyricIndexLength);
+
   // prevents point farming on the last letter
-  if (letterIndex == lyricIndexLength + 1) highestLetterIndex = letterIndex - 1;
+  if (letterIndex == lyricIndexLength + 1) highestLetterIndex = letterIndex;
   if (letterIndex > highestLetterIndex) {
+    console.log("letter index: " + letterIndex);
+    console.log("length: " + lyricIndexLength);
+
     comboArray[comboArray.length - 1]++;
     totalPoints +=
       ((totalCharacters - mistakes) / totalCharacters) *
@@ -158,14 +166,14 @@ function handleBackspace(type) {
   // if the character is a space then remove the space index (will be the previous space index)
   if (
     letterIndex == spaceArray[spaceArray.length - 1] + 1 &&
-    spaceArray[spaceArray.length - 1] != -1
+    spaceArray[spaceArray.length - 1] != 0
   ) {
     spaceArray.pop();
   }
 
   if (type == "character") {
     // as long as the current letter not the first letter
-    if (letterIndex > 0) {
+    if (letterIndex > 1) {
       letterIndex--;
       currentLetter = currentLyric.querySelector("#letter" + letterIndex);
 
@@ -175,7 +183,7 @@ function handleBackspace(type) {
   } else {
     // removes the classes from the ctrl backspaced word
     for (let i = letterIndex - 1; i >= spaceArray[spaceArray.length - 1]; i--) {
-      if (i < 0) break;
+      if (i < 1) break;
       currentLetter = currentLyric.querySelector("#letter" + i);
 
       if (currentLetter.classList.contains("wrong")) mistakes--;
