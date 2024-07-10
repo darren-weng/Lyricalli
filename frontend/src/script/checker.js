@@ -1,6 +1,9 @@
 // document elements
 const charInput = document.getElementById("charInput");
 const lyricsContainer = document.getElementById("lyrics-container");
+const comboCounter = document.getElementById("comboCounter");
+const totalPointsOutput = document.getElementById("totalPointsOutput");
+const accuracyOutput = document.getElementById("accuracyOutput");
 let lyricsElements = lyricsContainer.children;
 
 // checkLyricChanges variables
@@ -18,6 +21,7 @@ let mistakes = 0;
 let comboArray = [0];
 let highestLetterIndex = 0;
 let totalPoints = 0;
+let accuracy;
 
 // .has is more efficient than .includes so a a set is needed
 const functionKeys = new Set([
@@ -48,13 +52,12 @@ function checkLyricsChanges(mutationsList) {
       if (lyricIndexLength - letterIndex > 0) comboReset();
       mistakes += lyricIndexLength - letterIndex;
 
-      console.log(comboArray);
-
       // last index of the lyric
       lyricIndexLength = parseInt(
         currentLyric.querySelector("span:last-child").id.slice(6)
       );
       totalCharacters += lyricIndexLength;
+      updateAccuracy();
       currentLyricIndex++;
 
       // resets the variables
@@ -124,14 +127,13 @@ function inputHandler(event) {
 
     letterIndex++;
     pointsCalc();
-
-    console.log(Math.round(totalPoints));
   } else {
     // if it's wrong
     currentLetter.classList.add("wrong");
     letterIndex++;
     mistakes++;
 
+    updateAccuracy();
     comboReset();
   }
 }
@@ -140,23 +142,23 @@ function comboReset() {
   if (comboArray[comboArray.length - 1] != 0) {
     comboArray.push(0);
   }
+
+  comboCounter.innerHTML = "combo: " + comboArray[comboArray.length - 1];
 }
 
-//! FIX THIS. CAN BACKSPACE AND RETYPE
 function pointsCalc() {
-  // prevents point farming on the last letter
-  console.log("letter index: " + letterIndex);
-  console.log("length: " + highestLetterIndex);
+  updateAccuracy();
 
   if (letterIndex > highestLetterIndex) {
     comboArray[comboArray.length - 1]++;
-    totalPoints +=
-      ((totalCharacters - mistakes) / totalCharacters) *
-      (300 * (comboArray[comboArray.length - 1] / 88));
+    totalPoints += accuracy * (300 * (comboArray[comboArray.length - 1] / 88));
   }
 
-  if (letterIndex == lyricIndexLength + 1) highestLetterIndex = letterIndex;
+  comboCounter.innerHTML = "combo: " + comboArray[comboArray.length - 1];
+  totalPointsOutput.innerHTML = "points: " + Math.round(totalPoints);
 
+  // prevents point farming on the last letter
+  if (letterIndex == lyricIndexLength + 1) highestLetterIndex = letterIndex;
 }
 
 function handleBackspace(type) {
@@ -175,6 +177,7 @@ function handleBackspace(type) {
       currentLetter = currentLyric.querySelector("#letter" + letterIndex);
 
       if (currentLetter.classList.contains("wrong")) mistakes--;
+      updateAccuracy();
       currentLetter.classList.remove("wrong", "correct");
     }
   } else {
@@ -188,7 +191,13 @@ function handleBackspace(type) {
     }
     // plus 1 to get the index after the space
     letterIndex = spaceArray[spaceArray.length - 1] + 1;
+    updateAccuracy();
   }
   // reset combo on any backspace
   comboReset();
+}
+
+function updateAccuracy() {
+  accuracy = (totalCharacters - mistakes) / totalCharacters;
+  accuracyOutput.innerHTML = "accuracy " + Math.round(accuracy * 100) + "%";
 }
