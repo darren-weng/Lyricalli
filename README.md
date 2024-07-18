@@ -1,4 +1,4 @@
-# 🎶 Lyrically
+# 🎶 Lyricalli
 
 ## About
 A website made by musicophiles, for musicophiles
